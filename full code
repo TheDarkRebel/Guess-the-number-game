@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "rus");
+	int minp = 0, maxp = 0, user_num, rand_num, trys = 6;
+	bool flag = false;
+
+	cout << "Добро пожаловать в игру 'Угадай число'!" << endl;
+	cout << "\n";
+
+	while (flag == false) {
+		cout << "Введите сначала нижний, а затем верхний пределы: (Число будет выбираться включительно)\n";
+		cin >> minp;
+		cin >> maxp;
+
+		if (maxp < minp) {
+			cout << "В данном диапазоне нет чисел! Повторите ввод.\n";
+			cout << "\n";
+			flag = false;
+		}
+		else {
+			flag = true;
+		}
+	}
+
+	srand(time(0));
+	rand_num = rand() % maxp + minp;
+
+	for (int i = 0; i < trys; i++) {
+		cout << "Введите загаданное число: ";
+		cin >> user_num;
+
+		if (user_num == rand_num) {
+			cout << "Вы угадали! Загаданным числом было: " << rand_num;
+			break;
+		}
+
+		else if (trys - i - 1 > 0){
+			cout << "Вы не угадали( Попробуйте снова! У вас осталось " << trys - i - 1 << " попыток!";
+		}
+
+		else {
+			cout << "Вы проиграли( Загаданным числом было: " << rand_num;
+		}
+
+	}
+	return 0;
+}
